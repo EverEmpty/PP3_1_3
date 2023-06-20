@@ -71,10 +71,14 @@ public class UserServiceImpl implements UserService{
         if (user == null) {
             throw new UsernameNotFoundException(String.format("User '%s' not found", username));
         }
-        return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
+        return new org.springframework.security.core.userdetails.User(user.getName()
+                , user.getPassword()
+                , mapRolesToAuthorities(user.getRoles()));
     }
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
-        return roles.stream().map(u->new SimpleGrantedAuthority(u.getRoleName())).collect(Collectors.toList());
+        return roles.stream()
+                .map(u->new SimpleGrantedAuthority(u.getRoleName()))
+                .collect(Collectors.toList());
     }
 }
