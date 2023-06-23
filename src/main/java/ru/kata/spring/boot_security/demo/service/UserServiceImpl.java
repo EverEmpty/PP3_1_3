@@ -8,59 +8,56 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.entity.Role;
 import ru.kata.spring.boot_security.demo.entity.User;
-import ru.kata.spring.boot_security.demo.repository.UserDao;
+import ru.kata.spring.boot_security.demo.repository.UserRepository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService{
 
-    private final UserDao userDao;
+    private final UserRepository userRepository;
 
-    public UserServiceImpl(UserDao userDao) {
-        this.userDao = userDao;
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Transactional(readOnly = true)
     @Override
     public List<User> userList() {
-        return userDao.userList();
+        return userRepository.findAll();
     }
 
     @Transactional
     @Override
     public void saveUser(User user) {
-        if (user.getId() == 0) {
-            userDao.saveUser(user);
-        } else {
-            userDao.updateUser(user);
-        }
+        userRepository.save(user);
     }
 
     @Transactional
     @Override
     public void deleteUser(long id) {
-        userDao.deleteUser(id);
+        userRepository.deleteById(id);
     }
 
     @Transactional
     @Override
     public void updateUser(User user) {
-        userDao.updateUser(user);
+        saveUser(user);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public User getUserById(long id) {
-        return userDao.getUserById(id);
+    public Optional<User> getUserById(long id) {
+        return userRepository.findById(id);
     }
 
     @Transactional(readOnly = true)
     @Override
     public User getUserByName(String name) {
-        return userDao.getUserByName(name);
+        return userRepository.findByName(name);
     }
 
 
