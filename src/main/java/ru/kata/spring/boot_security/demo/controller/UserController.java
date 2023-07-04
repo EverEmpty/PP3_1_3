@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
+import java.security.Principal;
+
 
 @Controller
 @RequestMapping("/user")
@@ -17,8 +19,8 @@ public class UserController {
     }
 
     @GetMapping
-    public String getUsers(Model model) {
-        model.addAttribute("user", userService.userList());
+    public String getUserInfo(Model model, Principal principal) {
+        model.addAttribute("user", userService.getUserByName(principal.getName()));
         return "user";
     }
 }

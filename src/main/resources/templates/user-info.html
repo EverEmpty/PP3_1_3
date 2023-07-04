@@ -16,8 +16,14 @@
   <input type="text" th:field="*{name}" id="name"/>
   <label for="surname"> Enter surname: </label>
   <input type="text" th:field="*{surname}" id="surname"/>
-  <label for="surname"> Enter birthyear: </label>
+  <label for="birthyear"> Enter birthyear: </label>
   <input type="text" th:field="*{birthYear}" id="birthyear"/>
+  <label for="role">Role</label>
+  <select multiple size="2" th:name="roles" th:value="*{roles}" id="role" required>
+    <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.roleName}">Role name</option>
+  </select>
+  <label for="password"> Enter password: </label>
+  <input type="text" th:field="*{password}" id="password"/>
   <br>
   <br>
   <input type="submit" value="Create!">

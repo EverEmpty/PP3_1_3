@@ -36,8 +36,8 @@ public class InitUser{
         Set<Role> set3 = new HashSet<>();
         set3.add(roleAdmin);
         set3.add(roleUser);
-        User user1 = new User("admin", "admin", 1995, "$2a$12$uutdV/4Pievk1mitg0hy4.X29Be0fI43d.pRSCg783OZ/hIWbwMOG", set1);
-        User user2 = new User("user", "user", 1990, "$2a$12$vCjXgFjfQA8Vx2R3MeKk1uVB9iFeleoVz9dTDXD9KUyXXyvzUB91a", set2);
+        User user1 = new User("admin", "admin", 1995, "admin", set1);
+        User user2 = new User("user", "user", 1990, "user", set2);
         userService.saveUser(user1);
         userService.saveUser(user2);
     }

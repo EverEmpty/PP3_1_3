@@ -20,15 +20,17 @@
         <th scope="col">Name</th>
         <th scope="col">Surname</th>
         <th scope="col">BirthYear</th>
+        <th scope="col">Role</th>
         <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="users: ${user}">
-        <td th:text="${users.getId()}"></td>
-        <td th:text="${users.getName()}"></td>
-        <td th:text="${users.getSurname()}"></td>
-        <td th:text="${users.getBirthYear()}"></td>
+    <tr>
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getName()}"></td>
+        <td th:text="${user.getSurname()}"></td>
+        <td th:text="${user.getBirthYear()}"></td>
+        <td th:text="${user.getRoles()}"></td>
         </form>
     </tr>
     </tbody>
